@@ -31,8 +31,13 @@ public class Player2Controller : MonoBehaviour
         {
 
             jump = Input.GetButtonDown("Jump2");
-
+            move = Input.GetAxis("Horizontal2");
             isThrowing = Input.GetButtonDown("Fire2");
+
+            if (jump && grounded)
+            {
+                Jump();
+            }
 
             if (move > 0)
             {
@@ -55,23 +60,28 @@ public class Player2Controller : MonoBehaviour
     {
         if (Timer.timeLeft <= 0)
         {
-            move = Input.GetAxis("Horizontal2");
+            
             Move();
         }
     }
     private void Move()
     {
-        if (grounded && jump)
-        {
-            rb.AddForce(transform.up * jumpForce);
-            Debug.Log("Jump2");
-        }
+      
         // new velocity inherits from old so gravity will pull down 
         // player when moving.  
 
         Vector2 velocity = (transform.right * move) * maxSpeed * Time.fixedDeltaTime;
         velocity.y = rb.velocity.y;
         rb.velocity = velocity;
+    }
+
+    private void Jump()
+    {
+        if (grounded && jump)
+        {
+            rb.AddForce(transform.up * jumpForce);
+            Debug.Log("Jump");
+        }
     }
 
     public void flip(float move)

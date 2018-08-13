@@ -28,8 +28,13 @@ public class PlayerController : MonoBehaviour {
         if(Timer.timeLeft <= 0)
         { 
            jump = Input.GetButtonDown("Jump");
-
+           move = Input.GetAxis("Horizontal");
            isThrowing = Input.GetButtonDown("Fire1");
+
+          if(jump && grounded )
+          {
+             Jump();
+          }
 
            if (move > 0)
            {
@@ -52,17 +57,13 @@ public class PlayerController : MonoBehaviour {
     {
         if (Timer.timeLeft <= 0)
         {
-            move = Input.GetAxis("Horizontal");
+            
             Move();
         }
     }
     private void Move()
     {
-        if (grounded && jump)
-        {
-            rb.AddForce(transform.up * jumpForce);
-            Debug.Log("Jump");
-        }
+        
         // new velocity inherits from old so gravity will pull down 
         // player when moving.  
 
@@ -71,7 +72,14 @@ public class PlayerController : MonoBehaviour {
         rb.velocity = velocity;
     }
 
-   
+   private void Jump()
+   {
+        if (grounded && jump)
+        {
+            rb.AddForce(transform.up * jumpForce);
+            Debug.Log("Jump");
+        }
+    }
     public void flip(float move)
     {
         if (move < 0)
