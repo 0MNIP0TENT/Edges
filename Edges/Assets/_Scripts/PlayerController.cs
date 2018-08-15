@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     public int jumpForce = 500;
     public bool facingRight = true;
 
+    int canJump = 0;
     float move;
     bool grounded = false;
     bool jump = false;
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour {
            move = Input.GetAxis("Horizontal");
            isThrowing = Input.GetButtonDown("Fire1");
 
-          if(jump && grounded )
+          if(jump && canJump < 2 )
           {
              Jump();
           }
@@ -74,11 +75,9 @@ public class PlayerController : MonoBehaviour {
 
    private void Jump()
    {
-        if (grounded && jump)
-        {
             rb.AddForce(transform.up * jumpForce);
+            canJump++;
             Debug.Log("Jump");
-        }
     }
     public void flip(float move)
     {
@@ -120,6 +119,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (collision.gameObject.tag != "Ball")
         {
+            canJump = 0;
             grounded = true;
             jump = false;
             Debug.Log("grounded");
