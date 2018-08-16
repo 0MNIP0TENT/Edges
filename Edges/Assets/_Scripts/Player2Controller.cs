@@ -15,7 +15,6 @@ public class Player2Controller : MonoBehaviour
 
     int canJump = 0;
     float move;
-    bool grounded = false;
     bool jump = false;
     bool isThrowing;
 
@@ -120,22 +119,18 @@ public class Player2Controller : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        // stops from being able to jump after hit by a ball
         if (collision.gameObject.tag != "Ball")
         {
-            canJump = 0;
-            grounded = true;
-            jump = false;
+            if(rb.velocity.y == 0)
+                canJump = 0;
             Debug.Log("grounded");
         }
     }
 
     public void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Ball")
-        {
-            grounded = false;
-            Debug.Log("not grounded");
-        }
+       
     }
 
     public static Player2Controller Instance()
