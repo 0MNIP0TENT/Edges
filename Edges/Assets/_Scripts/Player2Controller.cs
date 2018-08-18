@@ -36,6 +36,7 @@ public class Player2Controller : MonoBehaviour
 
             if (jump && canJump < 2)
             {
+                SoundManagerScript.PlaySound("Jump");
                 Jump();
             }
 
@@ -51,6 +52,7 @@ public class Player2Controller : MonoBehaviour
 
             if (isThrowing)
             {
+                SoundManagerScript.PlaySound("Throw");
                 Throw();
             }
         }
@@ -124,7 +126,7 @@ public class Player2Controller : MonoBehaviour
         {
             if(rb.velocity.y == 0)
                 canJump = 0;
-            Debug.Log("grounded");
+           
         }
     }
 

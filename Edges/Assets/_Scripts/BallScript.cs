@@ -33,7 +33,6 @@ public class BallScript : MonoBehaviour {
         rb.velocity = new Vector2(ballSpeed, 1);
 
         Invoke("SetInActive", 5);
-        Debug.Log(playerController.facingRight);
     }
 
     private void FixedUpdate()
