@@ -6,14 +6,18 @@ public class SoundManagerScript : MonoBehaviour {
     public static AudioClip fall;
     public static AudioClip jump;
     public static AudioClip _throw;
+    public static AudioClip powerUp;
     static AudioSource[] source;
 
 	// Use this for initialization
 	void Start () {
-       fall = Resources.Load<AudioClip>("Fall");
-       jump = Resources.Load<AudioClip>("Jump");
-       _throw = Resources.Load<AudioClip>("Throw");
+        fall = Resources.Load<AudioClip>("Fall");
+        jump = Resources.Load<AudioClip>("Jump");
+        _throw = Resources.Load<AudioClip>("Throw");
+        powerUp = Resources.Load<AudioClip>("PowerUp");
         source = GetComponents<AudioSource>();
+
+       DontDestroyOnLoad(this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -32,6 +36,9 @@ public class SoundManagerScript : MonoBehaviour {
                 break;
             case "Throw":
                 source[2].PlayOneShot(_throw, 1f);
+                break;
+            case "PowerUp":
+                source[3].PlayOneShot(powerUp, 1f);
                 break;
         }
     }

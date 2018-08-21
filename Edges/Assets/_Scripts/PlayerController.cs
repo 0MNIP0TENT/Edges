@@ -78,7 +78,6 @@ public class PlayerController : MonoBehaviour {
    {
             rb.AddForce(transform.up * jumpForce);
             canJump++;
-            Debug.Log("Jump");
     }
     public void flip(float move)
     {

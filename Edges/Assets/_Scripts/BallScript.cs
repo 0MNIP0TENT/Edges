@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class BallScript : MonoBehaviour {
 
-    Rigidbody2D rb;
-    private float ballSpeed;
+    public static BallScript ballScript;
+    float ballSpeed;
+    public static float nSpeed = -40;
+    public static float pSpeed = 40;
     private GameObject player;
     private PlayerController playerController;
     private float direction;
-
+    private Rigidbody2D rb;
+    public static float mass = 35f;
 
     private void Awake()
     {
@@ -20,15 +23,19 @@ public class BallScript : MonoBehaviour {
     // OnEnable cant rely on start because it called after and only once
     void Start () {
 
-
+        rb.mass = mass;
         
     }
     private void OnEnable()
     {
         if (!playerController.facingRight)
-            ballSpeed = -40;
+        {
+            ballSpeed = nSpeed;
+        }
         else
-            ballSpeed = 40;
+            ballSpeed = pSpeed;
+
+        rb.mass = mass;
 
         rb.velocity = new Vector2(ballSpeed, 1);
 
@@ -43,5 +50,14 @@ public class BallScript : MonoBehaviour {
     private void SetInActive()
     {
         gameObject.SetActive(false);
+    }
+
+    public static BallScript Instance()
+    {
+        if (!ballScript)
+            ballScript = FindObjectOfType(typeof(BallScript)) as BallScript;
+        if (!ballScript)
+            Debug.LogError("There needs to be one active BallScript in the scene");
+        return ballScript;
     }
 }
