@@ -8,9 +8,9 @@ public class Player2Controller : MonoBehaviour
 
     public static Player2Controller player2Controller;
     Rigidbody2D rb;
-    public float maxSpeed = 500;
+    public float maxSpeed = 500f;
     public int up = 0;
-    public int jumpForce = 500;
+    public float jumpForce = 500f;
     public bool facingRight = false;
 
     int canJump = 0;

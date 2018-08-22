@@ -11,7 +11,7 @@ public class SpawnerScript : MonoBehaviour {
     void Start () {
         // stores the random powerup and the random amount of time to spawn
         powerUp = transform.Find("PowerUp").gameObject;
-        randomTime = Random.Range(0, 60);
+        randomTime = Random.Range(0, 120);
         StartCoroutine("LoseTime");
     }
 	

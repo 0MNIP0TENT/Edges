@@ -17,7 +17,7 @@ public class SoundManagerScript : MonoBehaviour {
         powerUp = Resources.Load<AudioClip>("PowerUp");
         source = GetComponents<AudioSource>();
 
-       DontDestroyOnLoad(this.gameObject);
+      // DontDestroyOnLoad(this.gameObject);
 	}
 	
 	// Update is called once per frame
