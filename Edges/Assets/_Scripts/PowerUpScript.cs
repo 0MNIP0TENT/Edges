@@ -13,7 +13,7 @@ public class PowerUpScript : MonoBehaviour {
 
     BallScript ballScript;
 
-    string[] powerUps = { "FasterBallVelocity","GreaterBallMass","JumpHigher","MoveFaster" };
+    string[] powerUps = { "FasterBallVelocity","GreaterBallMass","JumpHigher","MoveFaster","Shield" };
     string randomPowerUp = "";
     
     //upgrade multipliers
@@ -41,6 +41,10 @@ public class PowerUpScript : MonoBehaviour {
         else if (randomPowerUp == "MoveFaster")
         {
             spriteRenderer.color = Color.grey;
+        }
+        else if(randomPowerUp == "Shield")
+        {
+            spriteRenderer.color = Color.yellow;
         }
         Debug.Log("now your playing with power " + randomPowerUp);
     }
@@ -129,6 +133,22 @@ public class PowerUpScript : MonoBehaviour {
             SoundManagerScript.PlaySound("PowerUp");
 
             player2Controller.maxSpeed *= moveMultiplier;
+            Debug.Log("MoveFaster");
+            gameObject.SetActive(false);
+        }
+        else if (collision.tag == "Player" && randomPowerUp == "Shield")
+        {
+            SoundManagerScript.PlaySound("PowerUp");
+
+            playerController.hasShield = !playerController.hasShield;
+            Debug.Log("Shield");
+            gameObject.SetActive(false);
+        }
+        else if (collision.tag == "Player2" && randomPowerUp == "Shield")
+        {
+            SoundManagerScript.PlaySound("PowerUp");
+
+            player2Controller.hasShield = !player2Controller.hasShield;
             Debug.Log("MoveFaster");
             gameObject.SetActive(false);
         }

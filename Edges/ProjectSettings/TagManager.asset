@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ball
   - Player2
+  - Shield1
+  - Shield2
   layers:
   - Default
   - TransparentFX

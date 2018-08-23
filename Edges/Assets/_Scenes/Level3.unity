@@ -150,7 +150,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4703810546735744, guid: 1b33edb63a3e8c04f8d75fcc0e084acb, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b33edb63a3e8c04f8d75fcc0e084acb, type: 2}
@@ -788,7 +788,7 @@ Transform:
   - {fileID: 1554362492}
   - {fileID: 340430943}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!232 &625362519
 DistanceJoint2D:
@@ -1731,7 +1731,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 23.9
+  orthographic size: 33.6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

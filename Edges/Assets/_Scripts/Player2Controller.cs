@@ -8,20 +8,30 @@ public class Player2Controller : MonoBehaviour
 
     public static Player2Controller player2Controller;
     Rigidbody2D rb;
+    Transform shield;
+
     public float maxSpeed = 500f;
     public int up = 0;
     public float jumpForce = 500f;
     public bool facingRight = false;
+    public bool hasShield = false;
 
+    bool block = false;
     int canJump = 0;
     float move;
     bool jump = false;
     bool isThrowing;
 
+    private void OnEnable()
+    {
+        shield = transform.Find("Shield2");
+    }
+
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Debug.Log(hasShield);
     }
 
     // Update is called once per frame
@@ -33,6 +43,7 @@ public class Player2Controller : MonoBehaviour
             jump = Input.GetButtonDown("Jump2");
             move = Input.GetAxis("Horizontal2");
             isThrowing = Input.GetButtonDown("Fire2");
+            block = Input.GetButton("Block2");
 
             if (jump && canJump < 2)
             {
@@ -54,6 +65,14 @@ public class Player2Controller : MonoBehaviour
             {
                 SoundManagerScript.PlaySound("Throw");
                 Throw();
+            }
+            if (hasShield && block)
+            {
+                shield.gameObject.SetActive(true);
+            }
+            else
+            {
+                shield.gameObject.SetActive(false);
             }
         }
     }
@@ -87,10 +106,12 @@ public class Player2Controller : MonoBehaviour
         if (move < 0)
         {
             facingRight = false;
+            shield.transform.position = new Vector2(transform.position.x - 1.4F, transform.position.y - .8f);
         }
         else if (move > 0)
         {
             facingRight = true;
+            shield.transform.position = new Vector2(transform.position.x + 2, transform.position.y - .8f);
         }
     }
 
