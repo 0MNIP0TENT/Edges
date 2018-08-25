@@ -14,11 +14,13 @@ public class PlayerController : MonoBehaviour {
     public float jumpForce = 500f;
     public bool facingRight = true;
     public bool hasShield = false;
+    public bool autoFire = false;
 
+    bool isThrowingAuto;
     bool block = false;
     int canJump = 0;
     float move;
-    bool jump = false;
+    bool jump = true;
     bool isThrowing;
 
     private void OnEnable()
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour {
            jump = Input.GetButtonDown("Jump");
            move = Input.GetAxis("Horizontal");
            isThrowing = Input.GetButtonDown("Fire1");
+           isThrowingAuto = Input.GetButton("Fire1");
            block = Input.GetButton("Block1");
 
           if(jump && canJump < 2 )
@@ -57,12 +60,13 @@ public class PlayerController : MonoBehaviour {
                flip(move);
            }
 
-           if (isThrowing)
+           if (isThrowing && !autoFire)
            {
                 SoundManagerScript.PlaySound("Throw");
                 Throw();
            }
-           if(hasShield && block)
+            
+            if (hasShield && block && !isThrowing && !isThrowingAuto)
            {
                 shield.gameObject.SetActive(true);
            }
@@ -79,6 +83,11 @@ public class PlayerController : MonoBehaviour {
         {
             
             Move();
+            if (isThrowingAuto && autoFire)
+            {
+                SoundManagerScript.PlaySound("Throw");
+                Throw();
+            }
         }
     }
     private void Move()
@@ -94,8 +103,8 @@ public class PlayerController : MonoBehaviour {
 
    private void Jump()
    {
-            rb.AddForce(transform.up * jumpForce);
-            canJump++;
+        rb.AddForce(transform.up * jumpForce);
+        canJump++;
     }
     public void flip(float move)
     {
@@ -123,14 +132,14 @@ public class PlayerController : MonoBehaviour {
         {
             GameObject obj = ObjectPuller.current.GetPooledObject();
             if (obj == null) return;
-            obj.transform.position = new Vector2(transform.position.x + 1, transform.position.y);
+            obj.transform.position = new Vector2(transform.position.x + 1.4f, transform.position.y);
             obj.SetActive(true);
         }
         else
         {
             GameObject obj = ObjectPuller.current.GetPooledObject();
             if (obj == null) return;
-            obj.transform.position = new Vector2(transform.position.x - 1, transform.position.y);
+            obj.transform.position = new Vector2(transform.position.x - 1.4f, transform.position.y);
             obj.SetActive(true);
         }
     }

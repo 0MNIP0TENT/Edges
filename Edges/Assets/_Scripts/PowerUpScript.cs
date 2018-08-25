@@ -13,14 +13,14 @@ public class PowerUpScript : MonoBehaviour {
 
     BallScript ballScript;
 
-    string[] powerUps = { "FasterBallVelocity","GreaterBallMass","JumpHigher","MoveFaster","Shield" };
+    string[] powerUps = { "FasterBallVelocity","GreaterBallMass","JumpHigher","MoveFaster","Shield","AutoFire" };
     string randomPowerUp = "";
     
     //upgrade multipliers
-    float ballSpeedMultiplier = 1.1f;
-    float ballMassMultiplier = 1.1f;
-    float jumpMultiplier = 1.1f;
-    float moveMultiplier = 1.1f;
+    float ballSpeedMultiplier = 1.25f;
+    float ballMassMultiplier = 1.25f;
+    float jumpMultiplier = 1.25f;
+    float moveMultiplier = 1.25f;
 
     private void OnEnable()
     {
@@ -45,6 +45,10 @@ public class PowerUpScript : MonoBehaviour {
         else if(randomPowerUp == "Shield")
         {
             spriteRenderer.color = Color.yellow;
+        }
+        else if (randomPowerUp == "AutoFire")
+        {
+            spriteRenderer.color = Color.black;
         }
         Debug.Log("now your playing with power " + randomPowerUp);
     }
@@ -149,7 +153,23 @@ public class PowerUpScript : MonoBehaviour {
             SoundManagerScript.PlaySound("PowerUp");
 
             player2Controller.hasShield = !player2Controller.hasShield;
-            Debug.Log("MoveFaster");
+            Debug.Log("shield");
+            gameObject.SetActive(false);
+        }
+        else if (collision.tag == "Player" && randomPowerUp == "AutoFire")
+        {
+            SoundManagerScript.PlaySound("PowerUp");
+
+            playerController.autoFire = !playerController.autoFire;
+            Debug.Log("auto fire");
+            gameObject.SetActive(false);
+        }
+        else if (collision.tag == "Player2" && randomPowerUp == "AutoFire")
+        {
+            SoundManagerScript.PlaySound("PowerUp");
+
+            player2Controller.autoFire = !player2Controller.autoFire;
+            Debug.Log("auto fire");
             gameObject.SetActive(false);
         }
     }

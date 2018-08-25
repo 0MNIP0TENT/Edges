@@ -69,8 +69,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1697211926073592}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36.440857, y: -13.976667, z: 0.5155096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 32.7, y: 2.1, z: -0.2578125}
   m_LocalScale: {x: 10, y: 15, z: 1}
   m_Children:
   - {fileID: 4434055484745976}
@@ -211,6 +211,7 @@ MonoBehaviour:
   jumpForce: 500
   facingRight: 0
   hasShield: 0
+  autoFire: 0
 --- !u!212 &212288742131962630
 SpriteRenderer:
   m_ObjectHideFlags: 1

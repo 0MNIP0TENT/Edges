@@ -15,7 +15,9 @@ public class Player2Controller : MonoBehaviour
     public float jumpForce = 500f;
     public bool facingRight = false;
     public bool hasShield = false;
+    public bool autoFire = false;
 
+    bool isThrowingAuto;
     bool block = false;
     int canJump = 0;
     float move;
@@ -31,7 +33,6 @@ public class Player2Controller : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Debug.Log(hasShield);
     }
 
     // Update is called once per frame
@@ -43,6 +44,7 @@ public class Player2Controller : MonoBehaviour
             jump = Input.GetButtonDown("Jump2");
             move = Input.GetAxis("Horizontal2");
             isThrowing = Input.GetButtonDown("Fire2");
+            isThrowingAuto = Input.GetButton("Fire2");
             block = Input.GetButton("Block2");
 
             if (jump && canJump < 2)
@@ -61,12 +63,12 @@ public class Player2Controller : MonoBehaviour
                 flip(move);
             }
 
-            if (isThrowing)
+            if (isThrowing && !autoFire)
             {
                 SoundManagerScript.PlaySound("Throw");
                 Throw();
             }
-            if (hasShield && block)
+            if (hasShield && block && !isThrowing && !isThrowingAuto)
             {
                 shield.gameObject.SetActive(true);
             }
@@ -82,6 +84,11 @@ public class Player2Controller : MonoBehaviour
         if (Timer.timeLeft <= 0)
         {
             Move();
+            if (isThrowingAuto && autoFire )
+            {
+                SoundManagerScript.PlaySound("Throw");
+                Throw();
+            }
         }
     }
     private void Move()
@@ -127,14 +134,14 @@ public class Player2Controller : MonoBehaviour
         {
             GameObject obj = ObjectPooler2.current.GetPooledObject();
             if (obj == null) return;
-            obj.transform.position = new Vector2(transform.position.x + 1, transform.position.y);
+            obj.transform.position = new Vector2(transform.position.x + 1.4f, transform.position.y);
             obj.SetActive(true);
         }
         else
         {
             GameObject obj = ObjectPooler2.current.GetPooledObject();
             if (obj == null) return;
-            obj.transform.position = new Vector2(transform.position.x - 1, transform.position.y);
+            obj.transform.position = new Vector2(transform.position.x - 1.4f, transform.position.y);
             obj.SetActive(true);
         }
     }

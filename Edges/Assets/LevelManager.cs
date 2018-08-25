@@ -29,31 +29,70 @@ public class LevelManager : MonoBehaviour {
         {
             playerWins++;
             playerPoints = 0;
+            player2Points = 0;
             levelNumber++;
             SceneManager.LoadScene("Level2", LoadSceneMode.Single);
         }
         else if(player2Points >= 3 && levelNumber == 1)
         {
             player2Wins++;
+            playerPoints = 0;
             player2Points = 0;
             levelNumber++;
             SceneManager.LoadScene("Level2", LoadSceneMode.Single);
         }
 
         // load level 3
-        if (playerPoints >= 3 && levelNumber == 2)
+        else if (playerPoints >= 3 && levelNumber == 2)
         {
             playerWins++;
             playerPoints = 0;
+            player2Points = 0;
             levelNumber++;
             SceneManager.LoadScene("Level3", LoadSceneMode.Single);
         }
         else if (player2Points >= 3 && levelNumber == 2)
         {
             player2Wins++;
+            playerPoints = 0;
             player2Points = 0;
             levelNumber++;
             SceneManager.LoadScene("Level3", LoadSceneMode.Single);
+        }
+
+        // load level 4
+        else if (playerPoints >= 3 && levelNumber == 3)
+        {
+            playerWins++;
+            playerPoints = 0;
+            player2Points = 0;
+            levelNumber++;
+            SceneManager.LoadScene("Level4", LoadSceneMode.Single);
+        }
+        else if (player2Points >= 3 && levelNumber == 3)
+        {
+            player2Wins++;
+            playerPoints = 0;
+            player2Points = 0;
+            levelNumber++;
+            SceneManager.LoadScene("Level4", LoadSceneMode.Single);
+        }
+        // load level 5
+        else if (playerPoints >= 3 && levelNumber == 4)
+        {
+            playerWins++;
+            playerPoints = 0;
+            player2Points = 0;
+            levelNumber++;
+            SceneManager.LoadScene("Level5", LoadSceneMode.Single);
+        }
+        else if (player2Points >= 3 && levelNumber == 4)
+        {
+            player2Wins++;
+            playerPoints = 0;
+            player2Points = 0;
+            levelNumber++;
+            SceneManager.LoadScene("Level5", LoadSceneMode.Single);
         }
 
         playerScore.text = playerPoints.ToString();
