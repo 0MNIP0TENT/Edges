@@ -8,6 +8,8 @@ TagManager:
   - Player2
   - Shield1
   - Shield2
+  - Player2Platform
+  - PlayerPlatform
   layers:
   - Default
   - TransparentFX

@@ -56,8 +56,8 @@ public class PowerUpScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
  
-        player = GameObject.FindGameObjectWithTag("Player");
-        player2 = GameObject.FindGameObjectWithTag("Player2");
+       // player = GameObject.FindGameObjectWithTag("Player");
+       // player2 = GameObject.FindGameObjectWithTag("Player2");
 
         playerController = PlayerController.Instance();
         player2Controller = Player2Controller.Instance();

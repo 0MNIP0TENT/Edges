@@ -35,6 +35,8 @@ using UnityEngine.SceneManagement;
             BallScript.pSpeed = 40;
             BallScript2.nSpeed = -40;
             BallScript2.pSpeed = 40;
+            
+            
         }
         
     }
