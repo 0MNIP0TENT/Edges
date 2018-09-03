@@ -143,14 +143,18 @@ public class PlayerController : MonoBehaviour {
             obj.SetActive(true);
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag != "Ball")
         {
-            if (rb.velocity.y == 0)
-                canJump = 0;
-            
+            // if (rb.velocity.y == 0)
+            canJump = 0;
+
         }
     }
 

@@ -145,22 +145,21 @@ public class Player2Controller : MonoBehaviour
             obj.SetActive(true);
         }
     }
-
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         // stops from being able to jump after hit by a ball
         if (collision.gameObject.tag != "Ball")
         {
-            if(rb.velocity.y == 0)
-                canJump = 0;
-           
+            // if(rb.velocity.y == 0)
+            canJump = 0;
+
         }
     }
-
-    public void OnCollisionExit2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-       
+        
     }
+
 
     public static Player2Controller Instance()
     {

@@ -158,11 +158,13 @@ public class PowerUpScript : MonoBehaviour {
         }
         else if (collision.tag == "Player" && randomPowerUp == "AutoFire")
         {
+            gameObject.SetActive(false);
             SoundManagerScript.PlaySound("PowerUp");
 
             playerController.autoFire = !playerController.autoFire;
             Debug.Log("auto fire");
-            gameObject.SetActive(false);
+            
+            Debug.Log(playerController.autoFire);
         }
         else if (collision.tag == "Player2" && randomPowerUp == "AutoFire")
         {

@@ -139,6 +139,18 @@ public class LevelManager : MonoBehaviour {
             SceneManager.LoadScene("Level5", LoadSceneMode.Single);
             
         }
+        // load level 6
+        else if (playerPoints >= 3 && levelNumber == 5)
+        {
+            playerWins++;
+            playerPoints = 0;
+            player2Points = 0;
+            levelNumber++;
+            SoundManagerScript.StopMusic();
+            levelChanged = true;
+            SceneManager.LoadScene("Level6", LoadSceneMode.Single);
+
+        }
 
         else if (player2Points >= 3 && levelNumber == 5)
         {
@@ -151,6 +163,31 @@ public class LevelManager : MonoBehaviour {
             SceneManager.LoadScene("Level6", LoadSceneMode.Single);
 
         }
+        // load level 7
+        else if (playerPoints >= 3 && levelNumber == 6)
+        {
+            playerWins++;
+            playerPoints = 0;
+            player2Points = 0;
+            levelNumber++;
+            SoundManagerScript.StopMusic();
+            levelChanged = true;
+            SceneManager.LoadScene("Level7", LoadSceneMode.Single);
+
+        }
+
+        else if (player2Points >= 3 && levelNumber == 6)
+        {
+            player2Wins++;
+            playerPoints = 0;
+            player2Points = 0;
+            levelNumber++;
+            SoundManagerScript.StopMusic();
+            levelChanged = true;
+            SceneManager.LoadScene("Level7", LoadSceneMode.Single);
+
+        }
+
         playerScore.text = playerPoints.ToString();
         player2Score.text = player2Points.ToString();
 
